@@ -1,0 +1,17 @@
+name: "Workflow Dispatch Sample"
+on:
+  workflow_dispatch:
+    inputs:
+      param1:
+        description: "sample parameter"
+
+env:
+  IMAGE_TAG: ${{ github.event.inputs.image_tag || github.sha }}
+jobs:
+  job1:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: check param
+        run: |
+          echo "param1: ${{ github.event.inputs.param1 }}"
